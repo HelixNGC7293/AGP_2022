@@ -53,7 +53,11 @@ public class AIManager
         foreach (var agent in _gameAgents)
         {
             agent.Update();
-        }
+		}
+		foreach (var player in Services.Players)
+		{
+			player.Update();
+		}
 
 		if (timer_GoldShower > timerTotal_GoldShower)
 		{
