@@ -17,8 +17,9 @@ public static class Services
         set => _score = value;
     }
 
+
     //In case it's multiplayer
-	private static Player[] _players;
+    private static Player[] _players;
 	public static Player[] Players
 	{
 		get

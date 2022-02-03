@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
 
     public FiniteStateMachine<GameManager> _fsm;
 
+    
+
     private void Awake()
     {
         _InitializeServices();
@@ -29,6 +31,7 @@ public class GameManager : MonoBehaviour
     {
         Services.GameManager = this;
         _fsm = new FiniteStateMachine<GameManager>(this);
+
         _fsm.TransitionTo<State_TitleScreen>();
 
         Services.EventManager = new EventManager();
