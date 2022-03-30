@@ -14,6 +14,25 @@ public class BallController : MonoBehaviour
 
     private void Start()
     {
+        //var mouseDownTree = new Tree<BallController>
+        //(
+        //    new Sequence<BallController>
+        //    (
+        //        new IsMouseDown(),
+        //        new Selector<BallController>
+        //        (
+        //            new Sequence<BallController>
+        //            (
+        //                new Condition<BallController>(
+        //                    isHungryCondition
+        //                    ),
+        //                new GoTowardsMouse(true)
+        //            ),
+        //            new GoTowardsMouse(false)
+        //        )
+                
+        //    )
+        //); 
         var mouseDownTree = new Tree<BallController>
         (
             new Sequence<BallController>
@@ -28,7 +47,7 @@ public class BallController : MonoBehaviour
                     ),
                     new GoTowardsMouse(false)
                 )
-                
+
             )
         );
 
@@ -76,7 +95,12 @@ public class BallController : MonoBehaviour
             transform.position += _speed * vectorTowardsMouse;
 
     }
-    
+
+    //For condition node
+    private bool isHungryCondition(BallController context)
+    {
+        return hungry == true;
+    }
 }
 
 public class IsMouseDown : BehaviorTree.Node<BallController>
