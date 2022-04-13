@@ -7,6 +7,10 @@ public class VisitorProperty_Showcase : MonoBehaviour
 {
 	[SerializeField]
 	LocalReference reference;
+	NativeCSVExample csvExample;
+	ImageExample imageExample;
+	[SerializeField]
+	TextMesh tX_Name;
 	[SerializeField]
 	string referenceCameraName = "Main Camera";
 	[SerializeField]
@@ -39,10 +43,26 @@ public class VisitorProperty_Showcase : MonoBehaviour
 	void Start ()
 	{
 		mainCamera = reference.GetReference<Transform>(referenceCameraName);
+		csvExample = reference.GetReference<Transform>("TestManager").GetComponent<NativeCSVExample>();
+		imageExample = reference.GetReference<Transform>("ImageExample").GetComponent<ImageExample>();
+
+		imageExample.onLoadFinished += DressUp;
+
+		tX_Name.text = csvExample.GetRandomName();
 		strength = Random.Range(500, 1000);
 		nav = GetComponent<NavMeshAgent>();
 		nav.enabled = true;
 
+		
+	}
+
+	private void OnDestroy()
+	{
+		imageExample.onLoadFinished -= DressUp;
+	}
+
+	void DressUp()
+	{
 		dressCode = Random.Range(0, characterSetDB.cosplayerSet.Count);
 		CharacterSpriteSet c = characterSetDB.cosplayerSet[dressCode];
 		dressingUp_Visitor.ClothesSetUp(c.sBody,
