@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class VisitorProperty_Showcase : MonoBehaviour
 {
@@ -14,7 +16,9 @@ public class VisitorProperty_Showcase : MonoBehaviour
 	[SerializeField]
 	string referenceCameraName = "Main Camera";
 	[SerializeField]
+	AssetReference assetRefMember;
 	CharacterSetDB characterSetDB;
+
 	[SerializeField]
 	DressingUp_Visitor dressingUp_Visitor;
 	[SerializeField]
@@ -46,23 +50,32 @@ public class VisitorProperty_Showcase : MonoBehaviour
 		csvExample = reference.GetReference<Transform>("TestManager").GetComponent<NativeCSVExample>();
 		imageExample = reference.GetReference<Transform>("ImageExample").GetComponent<ImageExample>();
 
-		imageExample.onLoadFinished += DressUp;
+		imageExample.onLoadFinished += CharacterSetDBRefreshed;
 
 		tX_Name.text = csvExample.GetRandomName();
 		strength = Random.Range(500, 1000);
 		nav = GetComponent<NavMeshAgent>();
 		nav.enabled = true;
 
-		
 	}
 
 	private void OnDestroy()
 	{
-		imageExample.onLoadFinished -= DressUp;
+		imageExample.onLoadFinished -= CharacterSetDBRefreshed;
+		assetRefMember.ReleaseAsset();
 	}
 
-	void DressUp()
+	void CharacterSetDBRefreshed()
 	{
+		var handle = assetRefMember.LoadAssetAsync<CharacterSetDB>();
+		handle.Completed += CharacterSetDBLoaded;
+	}
+	void CharacterSetDBLoaded(AsyncOperationHandle<CharacterSetDB> obj)
+	{
+		if (obj.Status != AsyncOperationStatus.Succeeded) return;
+
+		characterSetDB = obj.Result;
+
 		dressCode = Random.Range(0, characterSetDB.cosplayerSet.Count);
 		CharacterSpriteSet c = characterSetDB.cosplayerSet[dressCode];
 		dressingUp_Visitor.ClothesSetUp(c.sBody,
@@ -74,7 +87,7 @@ public class VisitorProperty_Showcase : MonoBehaviour
 										c.sHandL,
 										c.sHandR);
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		if (!isExiting)

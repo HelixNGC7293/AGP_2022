@@ -1053,7 +1053,11 @@ MonoBehaviour:
   reference: {fileID: 11400000, guid: c78990fd74318604aa939f2ba7b8f0db, type: 2}
   tX_Name: {fileID: 5723207894807834167}
   referenceCameraName: MainCamera
-  characterSetDB: {fileID: 11400000, guid: bc23ec17825edd24aabf8fdc506e01a1, type: 2}
+  assetRefMember:
+    m_AssetGUID: bc23ec17825edd24aabf8fdc506e01a1
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   dressingUp_Visitor: {fileID: 4108995174997462790}
   mainBody: {fileID: 4504735700296904}
   anim: {fileID: 95330074702110004}
