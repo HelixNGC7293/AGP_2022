@@ -28,7 +28,7 @@ public class NativeCSVExample : MonoBehaviour
 #if UNITY_EDITOR
         return Application.streamingAssetsPath;
 #else
-        return Application.dataPath;
+        return Application.streamingAssetsPath;
 #endif
     }
 
