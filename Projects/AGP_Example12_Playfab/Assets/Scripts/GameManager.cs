@@ -7,13 +7,15 @@ using TMPro;
 public enum GameState {Menu, InGame, Result}
 public class GameManager : MonoBehaviour
 {
+    public delegate void GameEvent();
+    public GameEvent event_BackToMenu;
     GameState gameState = GameState.Menu;
 
     float gameTimer = 10;
-    float gameTimerTotal = 10;
+    public float gameTimerTotal = 5;
 
     float cookieTimer = 0;
-    float cookieTimerTotal = 1f;
+    public float cookieTimerTotal = 1f;
 
     
     public int score;
@@ -29,10 +31,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI tX_TimeLeft;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
 
     // Update is called once per frame
     void Update()
@@ -87,11 +85,22 @@ public class GameManager : MonoBehaviour
 
     public void BackToMenu()
     {
-        gameState = GameState.Menu;
+        if (gameState != GameState.Menu)
+        {
+            gameState = GameState.Menu;
+            Invoke("WaitForEndingAnimation", 1.5f);
+        }
+    }
+
+    void WaitForEndingAnimation()
+    {
+        //Wait for ending animation
 
         pages[0].SetActive(true);
         pages[1].SetActive(false);
         pages[2].SetActive(false);
+
+        event_BackToMenu?.Invoke();
     }
 
     public void CookieClicked()
