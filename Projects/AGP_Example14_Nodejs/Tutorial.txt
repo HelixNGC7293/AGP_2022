@@ -1,0 +1,25 @@
+1.Register and create your own Heroku account
+2.Add a new app/pipeline in Heroku webpage
+3.Click Deploy tab
+4.Install heroku CLI from here: https://devcenter.heroku.com/articles/heroku-cli
+5.After installed, run terminal/command line and input (Skip ## line):
+
+heroku login
+##########Point to your target directory with NodeWebGLServer folder, (in mac, right click the NodeWebGLServer finder and open the terminal)
+D:
+cd D:\My Unity AI\LoveMaze_Project2022\NodeWebGLServer
+##########Create git and upload to heroku
+git init
+heroku git:remote -a lovemaze2022
+
+git add .
+git commit -am "make it better"
+git push heroku master
+
+##########If updated the repo, run these command again to push latest build
+git add .
+git commit -am "Type in your commit message"
+git push heroku master
+
+
+##########After pushed, you can check out your build in heroku app webpage
