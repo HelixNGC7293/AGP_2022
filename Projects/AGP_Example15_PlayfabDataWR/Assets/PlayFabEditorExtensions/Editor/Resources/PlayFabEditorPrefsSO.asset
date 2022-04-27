@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d0199c11aa6f514784c5c69cd8378d8, type: 3}
+  m_Name: PlayFabEditorPrefsSO
+  m_EditorClassIdentifier: 
+  DevAccountEmail: dreampunkhelix@gmail.com
+  DevAccountToken: nyiu6qxfm741rhing7y96u6bq78iat4iu1ws5t8gxjhdz5qfaptgoshsrd4tmmcs7uk3kr1txmngejxqq7dr36jyw5876ebjwf1u7zu338ny7zw9newdcy8rz9rwz1ei6bidbq5woad1r5acakg6mhxj1fxnbms3i118x9fto9qmcjrzdw14hdthrs5guj88zwhsmc6y
+  SelectedStudio: My Game Studio
+  SdkPath: Assets/PlayFabSDK
+  EdExPath: 
+  LocalCloudScriptPath: 
+  PanelIsShown: 0
+  curMainMenuIdx: 1
+  curSubMenuIdx: 0
